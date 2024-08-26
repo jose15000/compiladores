@@ -1,20 +1,26 @@
 #!/bin/bash
 
-# Verifica se há arquivos modificados
-if [[ -z $(git status --porcelain) ]]; then
-  echo "Nenhuma modificação encontrada."
+# Saia do script se ocorrer qualquer erro
+set -e
+
+# Verifica se há mudanças no diretório de trabalho
+if [ -z "$(git status --porcelain)" ]; then
+  echo "Nenhuma mudança detectada."
   exit 0
 fi
 
-# Itera sobre cada arquivo modificado
-for file in $(git status --porcelain | grep '^[AM]' | awk '{print $2}'); do
-  echo "Adicionando e comitando: $file"
-
-  # Adiciona o arquivo ao staging
+# Adiciona e faz commit de cada arquivo individualmente
+for file in $(git status --porcelain | awk '{print $2}'); do
+  echo "Processando arquivo: $file"
+  
+  # Adiciona o arquivo ao índice
   git add "$file"
-
-  # Comita com uma mensagem padrão (substitua conforme necessário)
-  git commit -m "Comitando alterações no arquivo $file"
+  
+  # Faz o commit com a mensagem baseada no nome do arquivo
+  git commit -m "Committing change in $file"
+  
 done
 
-echo "Todos os arquivos foram comitados individualmente."
+git push
+
+echo "Todas as mudanças foram commitadas."
