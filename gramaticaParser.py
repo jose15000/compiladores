@@ -11,7 +11,7 @@ else:
 def serializedATN():
     return [
         4,1,27,7,2,0,7,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,5,0,2,1,0,0,0,2,
-        3,5,1,0,0,3,4,5,26,0,0,4,5,5,18,0,0,5,1,1,0,0,0,0
+        3,5,1,0,0,3,4,5,25,0,0,4,5,5,18,0,0,5,1,1,0,0,0,0
     ]
 
 class gramaticaParser ( Parser ):
@@ -34,7 +34,7 @@ class gramaticaParser ( Parser ):
                       "END", "WHILE", "DO", "READ", "VAR", "FALSE", "TRUE", 
                       "WRITE", "OPAD", "OPMULT", "OPLOG", "OPNEG", "OPREL", 
                       "PVIG", "PONTO", "DPONTOS", "VIG", "ABPAR", "FPAR", 
-                      "ATRIB", "EB", "ID", "COMENTARIOS_LINHA" ]
+                      "ATRIB", "ID", "COMENTARIOS_LINHA", "WS" ]
 
     RULE_programa = 0
 
@@ -65,9 +65,9 @@ class gramaticaParser ( Parser ):
     ABPAR=22
     FPAR=23
     ATRIB=24
-    EB=25
-    ID=26
-    COMENTARIOS_LINHA=27
+    ID=25
+    COMENTARIOS_LINHA=26
+    WS=27
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
