@@ -17,7 +17,7 @@ for file in $(git status --porcelain | awk '{print $2}'); do
   git add "$file"
   
   # Faz o commit com a mensagem baseada no nome do arquivo
-  git commit -m "Committing change in $file"
+  git commit -m "Ajustes"
   
 done
 
