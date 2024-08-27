@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,27,7,2,0,7,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,5,0,2,1,0,0,0,2,
+        4,1,29,7,2,0,7,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,5,0,2,1,0,0,0,2,
         3,5,1,0,0,3,4,5,25,0,0,4,5,5,18,0,0,5,1,1,0,0,0,0
     ]
 
@@ -28,13 +28,15 @@ class gramaticaParser ( Parser ):
                      "'BEGIN'", "'END'", "'WHILE'", "'DO'", "'READ'", "'VAR'", 
                      "'FALSE'", "'TRUE'", "'WRITE'", "<INVALID>", "<INVALID>", 
                      "<INVALID>", "'~'", "<INVALID>", "';'", "'.'", "':'", 
-                     "','", "'('", "')'", "':='" ]
+                     "','", "'('", "')'", "':='", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "'//'" ]
 
     symbolicNames = [ "<INVALID>", "PROGRAM", "INTEGER", "BOOLEAN", "BEGIN", 
                       "END", "WHILE", "DO", "READ", "VAR", "FALSE", "TRUE", 
                       "WRITE", "OPAD", "OPMULT", "OPLOG", "OPNEG", "OPREL", 
                       "PVIG", "PONTO", "DPONTOS", "VIG", "ABPAR", "FPAR", 
-                      "ATRIB", "ID", "COMENTARIOS_LINHA", "WS" ]
+                      "ATRIB", "ID", "CTE", "CADEIA", "COMENTARIOS_LINHA", 
+                      "WS" ]
 
     RULE_programa = 0
 
@@ -66,8 +68,10 @@ class gramaticaParser ( Parser ):
     FPAR=23
     ATRIB=24
     ID=25
-    COMENTARIOS_LINHA=26
-    WS=27
+    CTE=26
+    CADEIA=27
+    COMENTARIOS_LINHA=28
+    WS=29
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
