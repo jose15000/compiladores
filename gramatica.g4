@@ -35,8 +35,12 @@ ATRIB   : ':=';
 // identificadores (maíusculas, minúsculas e números)
 ID : [a-zA-Z_][a-zA-Z_0-9]* ;
 
+CTE: [0-9]+;
+
+CADEIA: '"' .*? '"';
+
 // comentários
-COMENTARIOS_LINHA : '//' ~[\r\n]* -> skip ;
+COMENTARIOS_LINHA : '//';
 
 // descartar espaços em branco
 WS : [ \t\r\n]+ -> skip ;
