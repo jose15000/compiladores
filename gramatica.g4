@@ -14,6 +14,7 @@ FALSE   : 'FALSE' ;
 TRUE    : 'TRUE' ;
 WRITE   : 'WRITE' ;
 
+
 // operadores aritméticos
 OPAD    : '+' | '-' ; 
 OPMULT  : '*' | '/' ;
@@ -45,4 +46,4 @@ COMENTARIOS_LINHA : '//';
 // descartar espaços em branco
 WS : [ \t\r\n]+ -> skip ;
 
-programa : PROGRAM ID PVIG ; 
+programa : PROGRAM ID PVIG; 
