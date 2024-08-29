@@ -1,3 +1,4 @@
+import curses
 from antlr4 import *
 
 from gramaticaLexer import gramaticaLexer
@@ -20,34 +21,41 @@ class CustomLexer(gramaticaLexer):
         text = self._input.getText(self._tokenStartCharIndex, self._input.index)
         raise LexicalError(line, column, text)
 
-def main():
-    try:
-        text = input("> ")
+def main(stdscr):
+    curses.curs_set(2)
+    stdscr.clear() 
+    stdscr.refresh() 
 
+    stdscr.addstr("Digite o texto para análise léxica: ")
+    curses.echo() 
+    text = stdscr.getstr().decode() 
+    try:
         lexer = CustomLexer(InputStream(text))
         stream = CommonTokenStream(lexer)
         parser = gramaticaParser(stream)
 
         tree = parser.programa()
-        print(tree.toStringTree(recog=parser))
+        stdscr.addstr("\n" + tree.toStringTree(recog=parser) + "\n")
 
         for token in stream.tokens:
             token_text = token.text
             token_type = lexer.symbolicNames[token.type]
-            
             if ':' in token_text:
                 tipo, atributo = token_text.split(":")
-                print(f"Token: {token_text}, Tipo: {tipo}, Atributo: {atributo}")
+                stdscr.addstr(f"Token : {token_text}, Tipo: {tipo}, Atributo: {atributo}\n")
             else:
-                print(f"Token: {token_text}, Tipo: {token_type}")
+                stdscr.addstr(f"Token: {token_text}, Tipo: {token_type}\n")
 
-        print("Análise léxica concluída.")
+        stdscr.addstr("Análise léxica concluída.\n")
 
     except LexicalError as e:
-        print(e)
+        stdscr.addstr(str(e) + "\n")
 
     except Exception as e:
-        print(f"Erro: {e}")
+        stdscr.addstr(f"Erro: {e}\n")
+
+    stdscr.addstr("\nPressione qualquer tecla para continuar...")
+    stdscr.getch()  # Esperar o usuário pressionar uma tecla
 
 if __name__ == '__main__':
-    main()
+    curses.wrapper(main)
