@@ -1,8 +1,8 @@
 import curses
 from antlr4 import *
 
-from gramaticaLexer import gramaticaLexer
-from gramaticaParser import gramaticaParser
+from lexerGrammar import lexerGrammar
+from parserGrammar import parserGrammar
 
 class LexicalError(Exception):
     def __init__(self, line, column, text):
@@ -14,7 +14,7 @@ class LexicalError(Exception):
     def _format_message(self):
         return f"Erro léxico na linha {self.line}, coluna {self.column}: '{self.text}'"
 
-class CustomLexer(gramaticaLexer):
+class CustomLexer(lexerGrammar):
     def notifyListeners(self, e):
         line = self._tokenStartLine
         column = self._tokenStartColumn
@@ -32,9 +32,9 @@ def main(stdscr):
     try:
         lexer = CustomLexer(InputStream(text))
         stream = CommonTokenStream(lexer)
-        parser = gramaticaParser(stream)
+        parser = parserGrammar(stream)
 
-        tree = parser.programa()
+        tree = parser.prog()
         stdscr.addstr("\n" + tree.toStringTree(recog=parser) + "\n")
 
         for token in stream.tokens:
