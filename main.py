@@ -55,7 +55,7 @@ def main(stdscr):
         stdscr.addstr(f"Erro: {e}\n")
 
     stdscr.addstr("\nPressione qualquer tecla para continuar...")
-    stdscr.getch()  # Esperar o usuário pressionar uma tecla
+    stdscr.getch() 
 
 if __name__ == '__main__':
     curses.wrapper(main)
