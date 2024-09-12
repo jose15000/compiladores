@@ -98,15 +98,6 @@ class parserGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by parserGrammar#elseOpt.
-    def enterElseOpt(self, ctx:parserGrammar.ElseOptContext):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#elseOpt.
-    def exitElseOpt(self, ctx:parserGrammar.ElseOptContext):
-        pass
-
-
     # Enter a parse tree produced by parserGrammar#cmdWhile.
     def enterCmdWhile(self, ctx:parserGrammar.CmdWhileContext):
         pass
@@ -134,24 +125,6 @@ class parserGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by parserGrammar#listW.
-    def enterListW(self, ctx:parserGrammar.ListWContext):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#listW.
-    def exitListW(self, ctx:parserGrammar.ListWContext):
-        pass
-
-
-    # Enter a parse tree produced by parserGrammar#elemW.
-    def enterElemW(self, ctx:parserGrammar.ElemWContext):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#elemW.
-    def exitElemW(self, ctx:parserGrammar.ElemWContext):
-        pass
-
-
     # Enter a parse tree produced by parserGrammar#cmdAtrib.
     def enterCmdAtrib(self, ctx:parserGrammar.CmdAtribContext):
         pass
@@ -170,48 +143,12 @@ class parserGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by parserGrammar#expr1.
-    def enterExpr1(self, ctx:parserGrammar.Expr1Context):
+    # Enter a parse tree produced by parserGrammar#listW.
+    def enterListW(self, ctx:parserGrammar.ListWContext):
         pass
 
-    # Exit a parse tree produced by parserGrammar#expr1.
-    def exitExpr1(self, ctx:parserGrammar.Expr1Context):
-        pass
-
-
-    # Enter a parse tree produced by parserGrammar#expr2.
-    def enterExpr2(self, ctx:parserGrammar.Expr2Context):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#expr2.
-    def exitExpr2(self, ctx:parserGrammar.Expr2Context):
-        pass
-
-
-    # Enter a parse tree produced by parserGrammar#expr3.
-    def enterExpr3(self, ctx:parserGrammar.Expr3Context):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#expr3.
-    def exitExpr3(self, ctx:parserGrammar.Expr3Context):
-        pass
-
-
-    # Enter a parse tree produced by parserGrammar#expr4.
-    def enterExpr4(self, ctx:parserGrammar.Expr4Context):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#expr4.
-    def exitExpr4(self, ctx:parserGrammar.Expr4Context):
-        pass
-
-
-    # Enter a parse tree produced by parserGrammar#expr5.
-    def enterExpr5(self, ctx:parserGrammar.Expr5Context):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#expr5.
-    def exitExpr5(self, ctx:parserGrammar.Expr5Context):
+    # Exit a parse tree produced by parserGrammar#listW.
+    def exitListW(self, ctx:parserGrammar.ListWContext):
         pass
 
 
