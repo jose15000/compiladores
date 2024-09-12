@@ -13,12 +13,14 @@ VAR     : 'VAR' ;
 FALSE   : 'FALSE' ;
 TRUE    : 'TRUE' ;
 WRITE   : 'WRITE' ;
-
+IF      : 'IF' ;       
+THEN    : 'THEN' ;      
+ELSE    : 'ELSE' ;     
 
 // operadores aritméticos
 OPAD    : '+' | '-' ; 
 OPMULT  : '*' | '/' ;
-OPLOG   : 'OR' | 'AND' ;
+OPLOG   : 'OR' | 'AND' ; // Corrigido para OPLOG
 OPNEG   : '~' ;
 
 // operadores relacionais
@@ -36,12 +38,14 @@ ATRIB   : ':=';
 // identificadores (maíusculas, minúsculas e números)
 ID : [a-zA-Z_][a-zA-Z_0-9]* ;
 
-CTE: [0-9]+;
+// constante numérica
+CTE: [0-9]+ ;
 
-CADEIA: '"' .*? '"';
+// constante string
+CADEIA: '"' .*? '"' ;
 
 // comentários
-COMENTARIOS_LINHA : '//';
+COMENTARIOS_LINHA : '//' .*? '\n' -> skip ;
 
 // descartar espaços em branco
 WS : [ \t\r\n]+ -> skip ;
