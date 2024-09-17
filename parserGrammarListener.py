@@ -98,6 +98,15 @@ class parserGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by parserGrammar#cmdElse.
+    def enterCmdElse(self, ctx:parserGrammar.CmdElseContext):
+        pass
+
+    # Exit a parse tree produced by parserGrammar#cmdElse.
+    def exitCmdElse(self, ctx:parserGrammar.CmdElseContext):
+        pass
+
+
     # Enter a parse tree produced by parserGrammar#cmdWhile.
     def enterCmdWhile(self, ctx:parserGrammar.CmdWhileContext):
         pass
@@ -140,6 +149,42 @@ class parserGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by parserGrammar#expr.
     def exitExpr(self, ctx:parserGrammar.ExprContext):
+        pass
+
+
+    # Enter a parse tree produced by parserGrammar#relExpr.
+    def enterRelExpr(self, ctx:parserGrammar.RelExprContext):
+        pass
+
+    # Exit a parse tree produced by parserGrammar#relExpr.
+    def exitRelExpr(self, ctx:parserGrammar.RelExprContext):
+        pass
+
+
+    # Enter a parse tree produced by parserGrammar#addExpr.
+    def enterAddExpr(self, ctx:parserGrammar.AddExprContext):
+        pass
+
+    # Exit a parse tree produced by parserGrammar#addExpr.
+    def exitAddExpr(self, ctx:parserGrammar.AddExprContext):
+        pass
+
+
+    # Enter a parse tree produced by parserGrammar#multExpr.
+    def enterMultExpr(self, ctx:parserGrammar.MultExprContext):
+        pass
+
+    # Exit a parse tree produced by parserGrammar#multExpr.
+    def exitMultExpr(self, ctx:parserGrammar.MultExprContext):
+        pass
+
+
+    # Enter a parse tree produced by parserGrammar#unaryExpr.
+    def enterUnaryExpr(self, ctx:parserGrammar.UnaryExprContext):
+        pass
+
+    # Exit a parse tree produced by parserGrammar#unaryExpr.
+    def exitUnaryExpr(self, ctx:parserGrammar.UnaryExprContext):
         pass
 
 
