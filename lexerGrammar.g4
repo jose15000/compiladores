@@ -1,5 +1,7 @@
 lexer grammar lexerGrammar;
 
+options { caseInsensitive = true; }
+
 // palavras reservadas
 PROGRAM : 'PROGRAM' ;
 INTEGER : 'INTEGER' ;
@@ -20,7 +22,7 @@ ELSE    : 'ELSE' ;
 // operadores aritméticos
 OPAD    : '+' | '-' ; 
 OPMULT  : '*' | '/' ;
-OPLOG   : 'OR' | 'AND' ; // Corrigido para OPLOG
+OPLOG   : 'OR' | 'AND' ; 
 OPNEG   : '~' ;
 
 // operadores relacionais
@@ -35,17 +37,17 @@ ABPAR   : '(' ;
 FPAR    : ')' ;
 ATRIB   : ':=';
 
-// identificadores (maíusculas, minúsculas e números)
-ID : [a-zA-Z_][a-zA-Z_0-9]* ;
+// Identificadores (máx 16 caracteres)
+ID : [a-zA-Z] [a-zA-Z_0-9]* ;
 
-// constante numérica
-CTE: [0-9]+ ;
+// Constante numérica (0 a 65535)
+CTE : '0' | [1-9] [0-9]{0,4} ;
 
-// constante string
-CADEIA: '"' .*? '"' ;
+// Constante de cadeia de texto
+CADEIA : '"' .*? '"' ;
 
-// comentários
+// Comentários
 COMENTARIOS_LINHA : '//' .*? '\n' -> skip ;
 
-// descartar espaços em branco
+// Descartar espaços em branco
 WS : [ \t\r\n]+ -> skip ;
