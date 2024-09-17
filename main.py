@@ -1,6 +1,4 @@
-import curses
 from antlr4 import *
-
 from lexerGrammar import lexerGrammar
 from parserGrammar import parserGrammar
 
@@ -21,41 +19,36 @@ class CustomLexer(lexerGrammar):
         text = self._input.getText(self._tokenStartCharIndex, self._input.index)
         raise LexicalError(line, column, text)
 
-def main(stdscr):
-    curses.curs_set(2)
-    stdscr.clear() 
-    stdscr.refresh() 
+def main():
+    print("Digite o texto para análise léxica: ")
+    text = input()
 
-    stdscr.addstr("Digite o texto para análise léxica: ")
-    curses.echo() 
-    text = stdscr.getstr().decode() 
     try:
         lexer = CustomLexer(InputStream(text))
         stream = CommonTokenStream(lexer)
         parser = parserGrammar(stream)
 
         tree = parser.prog()
-        stdscr.addstr("\n" + tree.toStringTree(recog=parser) + "\n")
+        print("\nÁrvore de Análise Sintática:")
+        print(tree.toStringTree(recog=parser))
 
+        print("\nTokens:")
         for token in stream.tokens:
             token_text = token.text
             token_type = lexer.symbolicNames[token.type]
             if ':' in token_text:
                 tipo, atributo = token_text.split(":")
-                stdscr.addstr(f"Token : {token_text}, Tipo: {tipo}, Atributo: {atributo}\n")
+                print(f"Token: {token_text}, Tipo: {tipo}, Atributo: {atributo}")
             else:
-                stdscr.addstr(f"Token: {token_text}, Tipo: {token_type}\n")
+                print(f"Token: {token_text}, Tipo: {token_type}")
 
-        stdscr.addstr("Análise léxica concluída.\n")
+        print("\nAnálise léxica concluída.")
 
     except LexicalError as e:
-        stdscr.addstr(str(e) + "\n")
+        print(f"\nErro léxico: {e}")
 
     except Exception as e:
-        stdscr.addstr(f"Erro: {e}\n")
-
-    stdscr.addstr("\nPressione qualquer tecla para continuar...")
-    stdscr.getch() 
+        print(f"\nErro geral: {e}")
 
 if __name__ == '__main__':
-    curses.wrapper(main)
+    main()
