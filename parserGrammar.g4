@@ -1,18 +1,22 @@
 parser grammar parserGrammar;
 
-options { tokenVocab=lexerGrammar; } // Liga o parser ao lexer
+options { tokenVocab=lexerGrammar; }
 
-// Regras de produção
+// Produção principal
+prog        :  PROGRAM ID PVIG decls? cmdComp PONTO ;
 
-prog        : PROGRAM ID PVIG decls cmdComp ;
-decls       : ( VAR listDecl )? ;
+// Declaração de variáveis
+decls       : VAR listDecl ;
 listDecl    : declTip ( PVIG declTip )* ;
 declTip     : listId DPONTOS tip ;
 listId      : ID ( VIG ID )* ;
 tip         : INTEGER | BOOLEAN ;
 
+// Comandos compostos
 cmdComp     : BEGIN listCmd END ;
 listCmd     : cmd ( PVIG cmd )* ;
+
+// Comandos básicos
 cmd         : cmdIf
             | cmdWhile
             | cmdRead
@@ -20,21 +24,25 @@ cmd         : cmdIf
             | cmdAtrib
             | cmdComp ;
 
-cmdIf       : IF expr THEN cmd ( ELSE cmd )? ;
+cmdIf       : IF expr THEN cmd cmdElse? ;
+cmdElse     : ELSE cmd ;
 cmdWhile    : WHILE expr DO cmd ;
 cmdRead     : READ ABPAR listId FPAR ;
 cmdWrite    : WRITE ABPAR listW FPAR ;
 cmdAtrib    : ID ATRIB expr ;
 
-expr        : expr OPREL expr
-            | expr OPAD expr
-            | expr OPMULT expr
-            | OPNEG expr
-            | ABPAR expr FPAR
-            | ID
-            | CTE
-            | TRUE
-            | FALSE ;
+// Expressões com precedência e associatividade
+expr : relExpr ;
 
-listW       : expr ABPAR VIG expr FPAR* ;
-  
+relExpr : addExpr ( OPREL addExpr )* ;
+addExpr : multExpr ( OPAD multExpr )* ;
+multExpr : unaryExpr ( OPMULT unaryExpr )* ;
+unaryExpr : OPNEG unaryExpr
+          | ABPAR expr FPAR
+          | ID
+          | CTE
+          | TRUE
+          | FALSE ;   
+
+// Lista de expressões para o comando WRITE
+listW       : expr ( VIG expr )* ;
