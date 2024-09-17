@@ -1,0 +1,11 @@
+PROGRAM TestProgram;
+VAR
+    x, y: INTEGER;
+BEGIN
+    x := 10;
+    y := 20;
+    IF x < y THEN
+        WRITE(x);
+    ELSE
+        WRITE(y);
+END.
