@@ -25,8 +25,6 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python test_grammar.py <input_file>")
         exit(1)
-
-    print("> ")
     text = sys.argv[1]
 
     try:
