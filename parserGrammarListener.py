@@ -98,15 +98,6 @@ class parserGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by parserGrammar#cmdElse.
-    def enterCmdElse(self, ctx:parserGrammar.CmdElseContext):
-        pass
-
-    # Exit a parse tree produced by parserGrammar#cmdElse.
-    def exitCmdElse(self, ctx:parserGrammar.CmdElseContext):
-        pass
-
-
     # Enter a parse tree produced by parserGrammar#cmdWhile.
     def enterCmdWhile(self, ctx:parserGrammar.CmdWhileContext):
         pass

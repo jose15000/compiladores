@@ -35,18 +35,15 @@ DPONTOS : ':' ;
 VIG     : ',' ;
 ABPAR   : '(' ;
 FPAR    : ')' ;
-ATRIB   : ':=';
+ATRIB   : ':=' ;
 
-// Identificadores (máx 16 caracteres)
-ID : [a-zA-Z] [a-zA-Z_0-9]* ;
+// Identificadores (devem começar com letra e podem ter até 16 caracteres alfanuméricos)
+ID : [a-zA-Z][a-zA-Z0-9_]* ;
 
-// Constante numérica (0 a 65535)
-CTE : '0' | [1-9] [0-9]{0,4} ;
+// Constante numérica
+CTE : [0-9]+ ;
 
-// Constante de cadeia de texto
-CADEIA : '"' .*? '"' ;
-
-// Comentários
+// Comentários de linha
 COMENTARIOS_LINHA : '//' .*? '\n' -> skip ;
 
 // Descartar espaços em branco
