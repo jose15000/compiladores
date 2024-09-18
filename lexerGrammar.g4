@@ -1,11 +1,10 @@
 lexer grammar lexerGrammar;
 
-options { caseInsensitive = true; }
-
-// palavras reservadas
+// Palavras reservadas
 PROGRAM : 'PROGRAM' ;
 INTEGER : 'INTEGER' ;
 BOOLEAN : 'BOOLEAN' ;
+STRING  : 'STRING' ;
 BEGIN   : 'BEGIN' ;
 END     : 'END' ;
 WHILE   : 'WHILE' ; 
@@ -19,16 +18,16 @@ IF      : 'IF' ;
 THEN    : 'THEN' ;      
 ELSE    : 'ELSE' ;     
 
-// operadores aritméticos
+// Operadores aritméticos
 OPAD    : '+' | '-' ; 
 OPMULT  : '*' | '/' ;
 OPLOG   : 'OR' | 'AND' ; 
-OPNEG   : '~' ;
+OPNEG   : '~' | 'NOT' ;
 
-// operadores relacionais
+// Operadores relacionais
 OPREL   : '<' | '<=' | '>' | '>=' | '==' | '<>' ;
 
-// símbolos
+// Símbolos
 PVIG    : ';' ;
 PONTO   : '.' ;
 DPONTOS : ':' ;
@@ -37,14 +36,19 @@ ABPAR   : '(' ;
 FPAR    : ')' ;
 ATRIB   : ':=' ;
 
-// Identificadores (devem começar com letra e podem ter até 16 caracteres alfanuméricos)
-ID : [a-zA-Z][a-zA-Z0-9_]* ;
 
-// Constante numérica
-CTE : [0-9]+ ;
+IDENTIFIER : [a-zA-Z0-9]{1,16} ;
+
+CTE : [0-9]+ {
+value = int(self.text)
+if value > 65535:
+    raise Exception(f"Constante fora do intervalo de 2 bytes: {self.text}")
+};
+
+STRING_LITERAL : '"' (~["\r\n] | '""')* '"' ;
 
 // Comentários de linha
-COMENTARIOS_LINHA : '//' .*? '\n' -> skip ;
+COMMENT : '//' ~[\r\n]* -> skip ;
 
 // Descartar espaços em branco
 WS : [ \t\r\n]+ -> skip ;

@@ -1,3 +1,4 @@
+import sys
 from antlr4 import *
 from lexerGrammar import lexerGrammar
 from parserGrammar import parserGrammar
@@ -20,11 +21,16 @@ class CustomLexer(lexerGrammar):
         raise LexicalError(line, column, text)
 
 def main():
-    print("Digite o texto para análise léxica: ")
-    text = input()
+
+    if len(sys.argv) != 2:
+        print("Usage: python test_grammar.py <input_file>")
+        exit(1)
+
+    print("> ")
+    text = sys.argv[1]
 
     try:
-        lexer = CustomLexer(InputStream(text))
+        lexer = CustomLexer(FileStream(text))
         stream = CommonTokenStream(lexer)
         parser = parserGrammar(stream)
 
